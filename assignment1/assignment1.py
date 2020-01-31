@@ -8,6 +8,10 @@ HOST = "redis-15494.c16.us-east-1-3.ec2.cloud.redislabs.com"
 PWD = "oxy7Xdopdk8m15GqnwHhi2XXKY6baxjo"
 PORT = "15494" 
 
+# HOST = "redis-11363.c1.asia-northeast1-1.gce.cloud.redislabs.com"
+# PWD = "1nOA0St0I7p9pQqu8HkQ18XqDfnoPeoL"
+# PORT = "11363" 
+
 redis1 = redis.Redis(host = HOST, password = PWD, port = PORT)
 
 while True:
@@ -18,9 +22,12 @@ while True:
         continue
     print("You have entered " + msg, end=' ') 
 
-   
     # Add your code here
+    count = 0
+    if redis1.get(msg) is not None:
+        count = int(redis1.get(msg))
 
-
-
-    print('for X times')
+    value = 1 + count
+    redis1.set(msg, value)
+ 
+    print('for '+ str(value) +' times')
