@@ -23,11 +23,11 @@ while True:
     print("You have entered " + msg, end=' ') 
 
     # Add your code here
-    count = 0
+    initial = 0
     if redis1.get(msg) is not None:
-        count = int(redis1.get(msg))
+        initial = int(redis1.get(msg))
 
-    value = 1 + count
+    value = 1 + initial
     redis1.set(msg, value)
  
     print('for '+ str(value) +' times')
